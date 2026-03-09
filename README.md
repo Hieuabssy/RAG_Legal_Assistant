@@ -1,10 +1,35 @@
 # RAG Legal Assistant (Hệ Thống RAG Tư Vấn Pháp Luật)
 
 Đây là hệ thống Chatbot/trợ lý pháp luật sử dụng kiến trúc **Retrieval-Augmented Generation (RAG)**. 
-Dự án bao gồm 3 thành phần chính:
-- **Cơ sở dữ liệu Vector**: PostgreSQL với extension `pgvector`.
-- **Backend**: FastAPI (Python) cung cấp API, xử lý Embedding và tương tác với LLM (Gemini).
-- **Frontend**: Giao diện người dùng Web xây dựng bằng ReactJS & Vite.
+**Xem video Demo chi tiết trên YouTube:** [Tại đây](https://youtu.be/QCBXms4HKZ0)
+
+##  Kiến Trúc Hệ Thống
+![RAG Architecture](src/Untitled%20Diagram.drawio.svg)
+
+##  Các Công Cụ Và Công Nghệ Sử Dụng
+Dự án được xây dựng dựa trên các công nghệ và công cụ hiện đại:
+- **Ngôn ngữ lập trình**: Python, JavaScript/TypeScript.
+- **Cơ sở dữ liệu Vector**: **PostgreSQL** kết hợp extension **`pgvector`** để lưu trữ và tính độ tương đồng của các biểu diễn vector (embeddings).
+- **Backend Framework**: **FastAPI** cung cấp API tốc độ cao, xử lý văn bản, tạo embedding và tương tác trực tiếp với AI.
+- **Mô Hình Biểu Diễn Vector (Embedding)**: Sử dụng **`keepitreal/vietnamese-sbert`** (Sentence-Transformers) chuyên dụng cho tiếng Việt để chuyển đổi văn bản thành vector.
+- **Mô Hình Đánh Giá Trọng Số (Reranker)**: Sử dụng Cross-Encoder **`BAAI/bge-reranker-v2-m3`** để chấm điểm lại (rerank) mức độ liên quan của các tài liệu trước khi đưa vào LLM.
+- **Mô Hình Ngôn Ngữ (LLM)**: Sử dụng **Google `gemini-2.5-flash`** cho 2 nhiện vụ: Viết lại truy vấn (Query Rewriting) và tổng hợp câu trả lời cuối cùng.
+- **Frontend Framework**: **ReactJS** cùng với **Vite** để phát triển giao diện người dùng (UI) một cách mượt mà và trực quan.
+- **Thu thập & Xử lý Dữ liệu**: Thư viện BeautifulSoup4 và Requests để thu thập dữ liệu (crawling), kết hợp thuật toán chunking tùy chỉnh theo cấu trúc Điều/Khoản của văn bản pháp luật.
+- **Môi trường & Triển khai**: Mọi thứ được đóng gói (containerized) thông qua **Docker** và chạy bằng **Docker Compose**, bảo đảm dễ dàng tự động hóa quy trình cài đặt.
+
+##  Giao Diện Ứng Dụng
+Dưới đây là một số hình ảnh thực tế về giao diện của hệ thống:
+
+<p align="center">
+  <img src="src/img1.png" alt="Giao diện 1" />
+</p>
+<p align="center">
+  <img src="src/img2.png" alt="Giao diện 2" />
+</p>
+<p align="center">
+  <img src="src/img3.png" alt="Giao diện 3" />
+</p>
 
 ---
 
